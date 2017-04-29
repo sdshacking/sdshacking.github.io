@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+<head>
+<meta name="description" content="Personal website of SDS.">
+<title>SDS | LEARN HACKING AND JOIN US !</title>
+
+
+
+<style>
+* {margin: 0; padding: 100;}
+html, body { width:100%; height:100%; }
+
+body {background: black; font-size:16px; font-family:lucida console, monospace;}
+#c { display: block; visibility:hidden; xposition:relative; position:centre; top:0; }
+#content { position:relative; z-index:10; }
+#images { position:center;bottom:0; right:0;z-index:-1; }
+
+
+#httprequest { position:fixed; padding:10px; padding-bottom:0; background-color: rgba(0, 0, 0, 0.5); color:#fff; }
+#httprequest-console { white-space:pre; }
+#httprequest-textarea { width:1px; height:1px; position:absolute; left:-100px;}
+
+.footer {
+    position:fixed;bottom:0;
+
+    width:100%;
+    display:block;
+}
+.glow {
+  -webkit-stroke-width: 5.3px;
+   -webkit-stroke-color: #FFFFFF;
+   -webkit-fill-color: #FFFFFF;
+   text-shadow: 1px 0px 20px lime;
+   -webkit-transition: width 0.3s; /*Safari & Chrome*/
+   transition: width 0.3s;
+   -moz-transition: width 0.3s; /* Firefox 4 */
+   -o-transition: width 0.3s; /* Opera */
+}
+
+</style>
+</head>
+<body  oncontextmenu="return false">
+<div id="content">
+
+  <div id="httprequest" class="glow">
+    GET / < SDS >/1.0<br />
+    Host: SDS<br />
+< DATA TRANSFER STATUS >: COMPLETE ?<br>
+<br>WANT TO BE HACKER / GRAPHICS DESIGNER JOIN OUR COMMUNITY TODAY.<br>
+ ANONYMOUSLY LEARN AND PRACTICE HACKING LESSONS DAILY FOR ONE YEAR .<br><br>
+FROM BEGINNER TO BETTER !
+<br>PROTECT THE INTERNET <br><br>
+DEPARTMENT OF JUSTICE <br>
+<br>
+<br>
+YOU'VE BEEN WARNED !!!<br>
+<br>
+<br>
+&nbsp;<img onmouseover="bigImg(this)" onmouseout="normalImg(this)" border="0" src="sds.jpg" alt="Smiley"  width="50" height="50"><br>
+
+<script>
+function bigImg(x) {
+    x.style.height = "500px";
+    x.style.width = "500px";
+}
+
+function normalImg(x) {
+    x.style.height = "250px";
+    x.style.width = "250px";
+}
+</script><br>
+JOIN NOW : CLICK <a href="http://www.google.com">HERE</a><br>
+<hr><br>
+WE DO NOT FORGIVE<br>
+WE DONT FORGET <br>
+WE ARE LEGION <br>
+EXPECT US !!!<br>
+<br><hr><br>
+<footer> Copyright 2017 All rights reserved SDS.&copy; </footer>
+    <span id="httprequest-console"></span><span id="cursor">&#9608;</span>
+
+  </div>
+
+
+<div id="matrix-wrapper">
+  <canvas id="c"></canvas>
+</div>
+
+
+
+
+
+<script>
+
+Matrix = {};
+Matrix.chars = "{}[]<>-_=+1234567890~`!@#$%^&*();':\",.?/\|ijonah".split("");
+Matrix.fontsize = 13;
+Matrix.drops = []; //an array of drops - one per column
+Matrix.jackedin = false;
+Matrix.timer = false;
+
+
+Matrix.Jackin = function(id) {
+  this.c   = document.getElementById(id);
+  this.ctx = this.c.getContext("2d");
+
+  if (this.c.height > window.innerHeight && this.c.width > window.innerWidth) {
+    return;
+  }
+
+  if (this.c.height < window.innerHeight) {
+    this.c.height = window.innerHeight + 50;
+  }
+  if (this.c.width < window.innerWidth) {
+    this.c.width = window.innerWidth + 50;
+  }
+
+  var columns = this.c.width / this.fontsize; //number of columns for the rain
+  //x below is the x coordinate
+  //1 = y co-ordinate of the drop(same for every drop initially)
+  for(var x = 0; x < columns; x++)
+  	this.drops[x] = 1;
+
+
+  clearInterval(this.timer);
+
+  while (!this.jackedin) {
+    this.Neo();
+  }
+}
+
+Matrix.Neo = function() {
+
+	this.ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+	this.ctx.fillRect(0, 0, this.c.width, this.c.height);
+
+	this.ctx.fillStyle = "#999"; // "#0F0"; //green text
+	//ctx.font = font_size + "px arial";
+  this.ctx.font = this.fontsize + "px lucida console, monospace";
+
+	//looping over drops
+	for(var i = 0; i < this.drops.length; i++)
+	{
+		//a random chars character to print
+		var text = this.chars[Math.floor(Math.random()*this.chars.length)];
+		//x = i*font_size, y = value of drops[i]*font_size
+		this.ctx.fillText(text, i*this.fontsize, this.drops[i]*this.fontsize);
+
+		//sending the drop back to the top randomly after it has crossed the screen
+		//adding a randomness to the reset to make the drops scattered on the Y axis
+		if(this.drops[i]*this.fontsize > this.c.height && Math.random() > 0.975) {
+		  this.drops[i] = 0;
+      if (!this.jackedin) {
+        this.jackedin = true;
+        this.c.style.visibility = "visible";
+
+        clearInterval(this.timer);
+        Matrix.timer = setInterval(function() { Matrix.Neo(); }, 33);
+      }
+		}
+
+
+		//incrementing Y coordinate
+		this.drops[i]++;
+	}
+}
+
+
+Matrix.Jackin("c");
+</script>
+
+
+
+
+<textarea id="httprequest-textarea"></textarea>
+
+
+
+
+</div>
+
+<!-- Here ya go, Googlebot... -->
+<div id="images">
+  
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+// https://github.com/ROMB/jquery-dialogextend
+
+$(function(){
+
+  function httpconsole() {
+    $("#httprequest-textarea").focus();
+    var text = $("#httprequest-textarea").val();
+    text = text.replace(/\n/, "\nConnection closed by foreign host.\n");
+
+    if (text.split("\n").length > 4) {
+      $("#httprequest-textarea").val("")
+      text = "";
+    }
+
+    $("#httprequest-console").text(text);
+
+  }
+
+  $("body").keypress(httpconsole).keyup(httpconsole);
+
+  $(window).resize(function() {
+    Matrix.jackedin = false;
+    Matrix.Jackin("c");
+  });
+
+
+  $("#my-button").click(function(){
+
+  });
+
+
+});
+
+</script>
+</body>
+</html><!--
+
